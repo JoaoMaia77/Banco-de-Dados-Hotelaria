@@ -1,0 +1,42 @@
+use agencia_3a2;
+
+-- comando ddl -> linguagem de definicao de dados ( estrutura)
+-- create -> utlizado para criacao de objetos no banco
+-- use -> definir qual banco vamos trabalhos
+-- show -> listar objetos no banco de dados
+show tables; -- listar todas tabelas do banco
+-- desc -> descrever a estrutura fisica da tabela
+desc agencia;
+-- alter -> altera a estrutura da tabela
+alter table agencia add column email varchar(100) default null; -- add -> adicionar (campos)
+alter table agencia drop email; -- drop -> apagar coluna(campo)
+
+-- rename -> renomear o nome da tabela
+rename table nometabela to novonometabela;
+-- drop -> apagar a tabela no banco estrutura fisica
+drop table nometabela;
+
+-- comando dml -> linguagem de manipulacao dos dados
+-- insert - inserir dados nas tabelas 
+insert into agencia(codigo,nome,endereco,gerente) 
+values(null,md5('banco bradescos '),'rua santos,520','jose da silva');
+-- update - atualizar os dados nas tabelas
+update agencia set nome = 'banco do brasil', endereco = 'rua sao paulo', gerente = 'maria' where codigo = 4 limit 1;
+-- delete - apagar os dados nas tabelas
+delete from agencia where codigo = 3;
+-- select - visualizar os dados nas tabelas
+select * from agencia;
+-- listas as agencia com codigo maior que 1
+select * from agencia where codigo > 1;
+-- listar a agencia com o menor codigo -> min retorna o menor valor do campo
+select min(codigo),nome from agencia;
+-- listar a agencia com o maior codigo -> max retorna o menor valor do campo
+select max(codigo),nome from agencia;
+-- listar a media de codigo das agencia -> avg retorna a media de valor do campo
+select avg(codigo), nome from agencia;
+-- listar quantas agencias cadastradas -> count retorna a quantidade de registro na tabela
+select count(*) as qtde_agencias from agencia;
+-- listar a soma de codigo das agencia -> sum retorna a soma de valor do campo
+select sum(codigo) as soma_codigo from agencia;
+
+select codigo, md5(nome), endereco,gerente from agencia;
